@@ -1,24 +1,31 @@
-const WebSocket = require("ws");
 const express = require("express");
+const http = require("http"); // ✅ Add this
+const WebSocket = require("ws");
+
 const app = express();
 
 let latestFrame = null;
 
 // HTTP server port
 const PORT = process.env.PORT || 3000;
-const server = app.listen(PORT, () =>
-  console.log(`Server running on port ${PORT}`)
-);
 
-// WebSocket server on same port
+// ✅ Use http.createServer for Render compatibility
+const server = http.createServer(app);
+
+// ✅ Start server
+server.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));
+
+// ✅ WebSocket server on same port
 const wss = new WebSocket.Server({ server });
+
 wss.on("connection", (ws) => {
-  console.log("ESP32 connected via WebSocket");
+  console.log("📷 ESP32 connected via WebSocket");
   ws.on("message", (data) => {
     latestFrame = data;
   });
 });
 
+// ✅ MJPEG streaming endpoint
 app.get("/video", (req, res) => {
   res.writeHead(200, {
     "Content-Type": "multipart/x-mixed-replace; boundary=frame",
