@@ -37,8 +37,8 @@ app.get("/", (req, res) => {
         canvas {
           border: 2px solid #444;
           border-radius: 8px;
-          width: 360px;
-          height: 360px;
+          width: 640px;
+          height: 640px;
           background-color: #222;
         }
         h1 {
@@ -49,7 +49,7 @@ app.get("/", (req, res) => {
     </head>
     <body>
       <h1>🔴 ESP32-CAM Live Feed</h1>
-      <canvas id="videoCanvas" width="360" height="360"></canvas>
+      <canvas id="videoCanvas" width="640" height="640"></canvas>
       <script>
         const canvas = document.getElementById('videoCanvas');
         const ctx = canvas.getContext('2d');
