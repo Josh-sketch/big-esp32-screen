@@ -48,7 +48,7 @@ app.get("/", (req, res) => {
       </style>
     </head>
     <body>
-      <h1>🔴 ESP32-CAM Live Feed</h1>
+      <h1>🔴 CAM Live Feed</h1>
       <canvas id="videoCanvas" width="640" height="640"></canvas>
       <script>
         const canvas = document.getElementById('videoCanvas');
